@@ -1,0 +1,62 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "md5explorer"
+version = "1.0.0"
+description = "Outil CLI de gestion de fichiers : doublons, inventaire, indexation."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Rémi", email = "contact@erim.fr" }]
+keywords = ["cli", "duplicates", "md5", "file-management"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Filesystems",
+]
+dependencies = [
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7",
+    "pytest-cov",
+    "ruff",
+    "mypy",
+]
+
+[project.scripts]
+md5explorer = "md5explorer.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/erim32/md5explorer"
+Issues = "https://github.com/erim32/md5explorer/issues"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
+
+[[tool.mypy.overrides]]
+module = ["tqdm", "tqdm.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --cov=md5explorer --cov-report=term-missing"
