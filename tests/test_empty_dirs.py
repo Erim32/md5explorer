@@ -8,7 +8,8 @@ from md5explorer.scan.empty_dirs import EmptyDirCleaner, EmptyDirScanner
 
 
 def test_scanner_detects_leaf_directories(empty_tree: Path) -> None:
-    found = EmptyDirScanner().scan(empty_tree)
+    found = sorted(EmptyDirScanner().scan(empty_tree), key=lambda p: p.name)
+    names = [p.name for p in found]
     # topdown=False -> leaves first
     names = [p.name for p in found]
     assert names[0] == "c"

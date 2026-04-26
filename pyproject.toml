@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "md5explorer"
-version = "1.0.0"
+version = "1.0.1"
 description = "Outil CLI de gestion de fichiers : doublons, inventaire, indexation."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -60,3 +60,19 @@ ignore_missing_imports = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-ra --cov=md5explorer --cov-report=term-missing"
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+branch = "main"
+build_command = "python -m build"
+upload_to_vcs_release = true
+commit_parser = "conventional"
+allow_zero_version = false
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = ["feat", "fix", "perf", "refactor", "docs", "style", "test", "chore", "ci", "build"]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+
+[tool.semantic_release.changelog]
+mode = "update"
