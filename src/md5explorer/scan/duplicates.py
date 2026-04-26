@@ -204,8 +204,8 @@ class DuplicateReporter:
                 lines.append(f"  [{directories[dir_idx]}]")
                 for p in paths:
                     if self.show_dates:
-                        date_str = datetime.datetime.fromtimestamp(creation_time(p))
-                        date_str = date_str.strftime("%Y-%m-%d %H:%M:%S")
+                        date_obj = datetime.datetime.fromtimestamp(creation_time(p))
+                        date_str = date_obj.strftime("%Y-%m-%d %H:%M:%S")
                         lines.append(f"    - {p}  (created {date_str})")
                     else:
                         lines.append(f"    - {p}")
