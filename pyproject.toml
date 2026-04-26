@@ -64,7 +64,7 @@ addopts = "-ra --cov=md5explorer --cov-report=term-missing"
 [tool.semantic_release]
 version_toml = ["pyproject.toml:project.version"]
 branch = "main"
-build_command = "python -m build"
+build_command = ""
 upload_to_vcs_release = true
 commit_parser = "conventional"
 allow_zero_version = false
